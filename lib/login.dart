@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -82,7 +83,11 @@ class _LoginState extends State<Login> {
                     color: Colors.blue,
                     onPressed: () {
                       if (formkey.currentState.validate()) {
-                        setState(() {});
+                        Firestore.instance.collection("usuarios").document().setData({
+                          'login': '',
+                          'senha': '',
+                        });
+                        //setState(() {});
                       }
                     }),
               ],
