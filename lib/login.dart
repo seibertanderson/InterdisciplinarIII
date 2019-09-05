@@ -34,8 +34,7 @@ class _LoginState extends State<Login> {
                   focusNode: focusNomeUsuario,
                   autofocus: true,
                   textInputAction: TextInputAction.next,
-                  validator
-                  : (valor) {
+                  validator: (valor) {
                     if (valor.isEmpty) {
                       FocusScope.of(context).requestFocus(focusNomeUsuario);
                       return "Informe o nome";
@@ -47,7 +46,6 @@ class _LoginState extends State<Login> {
                   keyboardType: TextInputType.text,
                   controller: nomeUsuario,
                 ),
-               
                 TextFormField(
                   focusNode: focusSenhaUsuario,
                   autofocus: true,
@@ -65,25 +63,31 @@ class _LoginState extends State<Login> {
                   keyboardType: TextInputType.text,
                   controller: senhaUsuario,
                 ),
-               SizedBox(height: 50,),
-            RaisedButton(
-                 child: Text(
-                    "Login",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  color: Colors.blue,
-                  onPressed: () {
-                     if (formkey.currentState.validate()) {
-                      setState(() {
-                      });
-            }
+                RaisedButton(
+                    child: Text(
+                      "Login",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    color: Colors.blue,
+                    onPressed: () {
+                      if (formkey.currentState.validate()) {
+                        setState(() {});
                       }
-            ),
+                    }),
+                RaisedButton(
+                    child: Text(
+                      "Registrar-se",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    color: Colors.blue,
+                    onPressed: () {
+                      if (formkey.currentState.validate()) {
+                        setState(() {});
+                      }
+                    }),
               ],
             ),
           ),
         ));
   }
-  }
-                  
-
+}
