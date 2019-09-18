@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:interdisciplinar/pagina_inicial.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -71,6 +72,8 @@ class _LoginState extends State<Login> {
                     ),
                     color: Colors.blue,
                     onPressed: () {
+                      Navigator.push(context, 
+                      MaterialPageRoute(builder: (context) => PaginaInicial()));
                       if (formkey.currentState.validate()) {
                         setState(() {});
                       }
@@ -84,8 +87,8 @@ class _LoginState extends State<Login> {
                     onPressed: () {
                       if (formkey.currentState.validate()) {
                         Firestore.instance.collection("usuarios").document().setData({
-                          'login': '',
-                          'senha': '',
+                          'login': nomeUsuario.text,
+                          'senha': senhaUsuario.text,
                         });
                         //setState(() {});
                       }
