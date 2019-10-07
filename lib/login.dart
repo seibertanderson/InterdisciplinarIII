@@ -72,10 +72,23 @@ class _LoginState extends State<Login> {
                     ),
                     color: Colors.blue,
                     onPressed: () {
-                      Navigator.push(context, 
-                      MaterialPageRoute(builder: (context) => PaginaInicial()));
                       if (formkey.currentState.validate()) {
-                        setState(() {});
+                        //fazer verificação no firebase
+                        Firestore.instance
+                            .collection("usuarios")
+                            .where("login", isEqualTo: nomeUsuario.text)
+                            .where("senha", isEqualTo: senhaUsuario.text)
+                            .getDocuments()
+                            .then((QuerySnapshot doc) {
+                          if (doc.documents.length != 0) {
+                            //achou o usuario
+
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PaginaInicial()));
+                          }
+                        });
                       }
                     }),
                 RaisedButton(
@@ -86,7 +99,10 @@ class _LoginState extends State<Login> {
                     color: Colors.blue,
                     onPressed: () {
                       if (formkey.currentState.validate()) {
-                        Firestore.instance.collection("usuarios").document().setData({
+                        Firestore.instance
+                            .collection("usuarios")
+                            .document()
+                            .setData({
                           'login': nomeUsuario.text,
                           'senha': senhaUsuario.text,
                         });
